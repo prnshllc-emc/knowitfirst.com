@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade - Know It First</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --deep-bg: #0A1628;
+            --card: #162236;
+            --border: #1E2D45;
+            --ocean-start: #00B4D8;
+            --ocean-end: #0077B6;
+            --frost: #FFFFFF;
+            --frost-60: rgba(255,255,255,0.6);
+            --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        body {
+            background-color: var(--deep-bg);
+            color: var(--frost);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 2rem;
+            background-color: rgba(16, 34, 56, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--frost);
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-brand svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--frost-60);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--frost);
+        }
+
+        .lang-switcher {
+            background-color: var(--border);
+            border: 1px solid var(--border);
+            color: var(--frost);
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switcher:hover {
+            background-color: var(--card);
+        }
+
+        /* Main Container */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            min-height: calc(100vh - 200px);
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--ocean-start) 0%, var(--ocean-end) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .last-updated {
+            color: var(--frost-60);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--ocean-start);
+        }
+
+        h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--frost);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--frost-60);
+            font-size: 1rem;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+            color: var(--frost-60);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: var(--frost);
+        }
+
+        em {
+            color: var(--ocean-start);
+        }
+
+        .section {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            background-color: rgba(0, 180, 216, 0.1);
+            border-left: 4px solid var(--ocean-start);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0.375rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        table th {
+            background-color: var(--border);
+            padding: 0.75rem;
+            text-align: left;
+            color: var(--frost);
+            border: 1px solid var(--border);
+        }
+
+        table td {
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            color: var(--frost-60);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--card);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--frost);
+        }
+
+        .footer-section a {
+            display: block;
+            color: var(--frost-60);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--ocean-start);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: var(--frost-60);
+            font-size: 0.85rem;
+        }
+
+        .contact-info {
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+
+        .contact-info a {
+            color: var(--ocean-start);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--frost);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+            }
+
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+
+            main {
+                padding: 1.5rem 1rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            table th, table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="nav-brand">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="28" height="28" rx="4" stroke="currentColor" stroke-width="2"/>
+                <path d="M10 12L16 20L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="24" cy="8" r="2" fill="currentColor"/>
+            </svg>
+            KNOW IT FIRST
+        </a>
+        <div class="nav-links">
+            <a href="/">Início</a>
+            <a href="/terms">Termos</a>
+            <button class="lang-switcher" onclick="window.location.href='/knowitfirst-privacy-en.html'">EN</button>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Política de Privacidade</h1>
+        <p class="last-updated">Última atualização: março de 2026</p>
+
+        <div class="section">
+            <h2>1. Introdução</h2>
+            <p>Know It First ("nós," "nossa," ou "Empresa") está comprometida em proteger sua privacidade. Esta Política de Privacidade explica como coletamos, usamos, divulgamos e protegemos suas informações quando você visita nosso site e compra nossos produtos digitais.</p>
+            <p>Leia esta Política de Privacidade com atenção. Se você não concordar com nossas práticas de dados, por favor não use nosso Serviço.</p>
+        </div>
+
+        <div class="section">
+            <h2>2. Informações Que Coletamos</h2>
+
+            <h3>2.1 Informações Fornecidas Diretamente por Você</h3>
+            <p>Coletamos informações que você fornece voluntariamente quando você:</p>
+            <ul>
+                <li>Realiza uma compra</li>
+                <li>Se inscreve em nossa lista de email</li>
+                <li>Entra em contato conosco via email ou formulários</li>
+                <li>Participa de pesquisas ou feedback</li>
+            </ul>
+
+            <div class="highlight">
+                <p><strong>Dados Específicos Coletados:</strong></p>
+                <ul style="margin: 1rem 0 0 2rem;">
+                    <li>Nome completo</li>
+                    <li>Endereço de email</li>
+                    <li>Informações de pagamento (processadas por terceiros)</li>
+                </ul>
+            </div>
+
+            <h3>2.2 Informações Coletadas Automaticamente</h3>
+            <p>Quando você visita nosso site, podemos coletar automaticamente:</p>
+            <ul>
+                <li>Endereço IP</li>
+                <li>Tipo e versão do navegador</li>
+                <li>Sistema operacional</li>
+                <li>Páginas visitadas e tempo gasto</li>
+                <li>Informações de referência</li>
+                <li>Identificadores de dispositivo</li>
+                <li>Cookies e pixels de rastreamento</li>
+            </ul>
+
+            <h3>2.3 Informações de Terceiros</h3>
+            <p>Podemos receber informações sobre você de:</p>
+            <ul>
+                <li>Processadores de pagamento (Kiwify, Lemon Squeezy)</li>
+                <li>Plataformas de email marketing (HubSpot, Gmail)</li>
+                <li>Provedores de análise (Google Analytics)</li>
+            </ul>
+
+            <h3>2.4 Sem Contas de Usuário</h3>
+            <p><strong>Importante:</strong> Know It First não requer contas de usuário. Os produtos são entregues por email após a compra. Não armazenamos senhas ou credenciais de conta.</p>
+        </div>
+
+        <div class="section">
+            <h2>3. Como Usamos Suas Informações</h2>
+            <p>Usamos as informações coletadas para os seguintes fins:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Finalidade</th>
+                        <th>Dados Utilizados</th>
+                        <th>Base Legal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Entrega de Produtos</td>
+                        <td>Nome, Email</td>
+                        <td>Execução de Contrato</td>
+                    </tr>
+                    <tr>
+                        <td>Email Marketing & CRM</td>
+                        <td>Email, Nome</td>
+                        <td>Consentimento / Interesse Legítimo</td>
+                    </tr>
+                    <tr>
+                        <td>Processamento de Pagamento</td>
+                        <td>Dados de Pagamento</td>
+                        <td>Execução de Contrato</td>
+                    </tr>
+                    <tr>
+                        <td>Suporte ao Cliente</td>
+                        <td>Nome, Email, Conteúdo</td>
+                        <td>Execução de Contrato</td>
+                    </tr>
+                    <tr>
+                        <td>Análise de Site</td>
+                        <td>IP, Info. do Navegador, Cookies</td>
+                        <td>Interesse Legítimo</td>
+                    </tr>
+                    <tr>
+                        <td>Melhoria de Serviço</td>
+                        <td>Dados de Uso, Feedback</td>
+                        <td>Interesse Legítimo</td>
+                    </tr>
+                    <tr>
+                        <td>Conformidade Legal</td>
+                        <td>Todos os Dados</td>
+                        <td>Obrigação Legal</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>3.1 Email Marketing</h3>
+            <p>Usamos HubSpot e Gmail para gerenciar comunicações por email, incluindo:</p>
+            <ul>
+                <li>Notificações de entrega de produto</li>
+                <li>Conteúdo educacional (manuais, dicas, insights da indústria)</li>
+                <li>Ofertas promocionais</li>
+                <li>Suporte ao cliente</li>
+            </ul>
+            <p>Você pode desinscrever-se de emails de marketing a qualquer momento clicando no link de cancelamento em qualquer email ou entrando em contato conosco em <strong>prnsh.llc@gmail.com</strong>.</p>
+        </div>
+
+        <div class="section">
+            <h2>4. Compartilhamento de Suas Informações</h2>
+
+            <h3>4.1 Provedores de Serviços de Terceiros</h3>
+            <p>Compartilhamos suas informações com os seguintes terceiros para fornecer o Serviço:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Serviço</th>
+                        <th>Finalidade</th>
+                        <th>Dados Compartilhados</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>HubSpot</strong></td>
+                        <td>CRM & Email Marketing</td>
+                        <td>Nome, Email</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gmail</strong></td>
+                        <td>Entrega de Produtos</td>
+                        <td>Nome, Email</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kiwify</strong></td>
+                        <td>Processamento de Pagamento (Brasil)</td>
+                        <td>Dados de Pagamento</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lemon Squeezy</strong></td>
+                        <td>Processamento de Pagamento (Global)</td>
+                        <td>Dados de Pagamento</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Make.com</strong></td>
+                        <td>Fluxos de Trabalho de Automação</td>
+                        <td>Nome, Email, Info. de Compra</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Google Analytics</strong></td>
+                        <td>Análise de Site (Opcional)</td>
+                        <td>IP, Info. de Dispositivo, Comportamento</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>4.2 Requisitos Legais</h3>
+            <p>Podemos divulgar suas informações se exigido por lei ou se acreditarmos de boa-fé que tal divulgação é necessária para:</p>
+            <ul>
+                <li>Cumprir obrigações legais, ordens judiciais ou solicitações do governo</li>
+                <li>Fazer cumprir nossos Termos de Uso</li>
+                <li>Proteger a segurança, direitos ou propriedade de Know It First, nossos usuários ou do público</li>
+                <li>Detectar, prevenir ou resolver fraude ou problemas de segurança</li>
+            </ul>
+
+            <h3>4.3 Transferências de Negócios</h3>
+            <p>Se Know It First estiver envolvida em uma fusão, aquisição, insolvência, dissolução, reorganização ou transação similar, suas informações podem fazer parte dos ativos transferidos.</p>
+
+            <h3>4.4 Informações Não-Pessoais</h3>
+            <p>Podemos compartilhar dados agregados e desidentificados com terceiros para fins de análise, marketing e pesquisa. Estes dados não podem identificá-lo.</p>
+        </div>
+
+        <div class="section">
+            <h2>5. Retenção de Dados</h2>
+            <p>Retemos seus dados pelo tempo necessário para:</p>
+            <ul>
+                <li>Fornecer o Serviço e manter seu acesso ao produto</li>
+                <li>Cumprir nossas obrigações legais e contratuais</li>
+                <li>Resolver disputas e fazer cumprir acordos</li>
+            </ul>
+
+            <h3>5.1 Período de Retenção</h3>
+            <ul>
+                <li><strong>Dados de Compra:</strong> Retidos por 7 anos (conformidade fiscal e legal)</li>
+                <li><strong>Dados de Email/Marketing:</strong> Retidos até o cancelamento da inscrição</li>
+                <li><strong>Comunicações de Suporte:</strong> Retidas por 2 anos</li>
+                <li><strong>Análise de Site:</strong> Retida por 26 meses (padrão Google Analytics)</li>
+            </ul>
+
+            <h3>5.2 Solicitações de Exclusão</h3>
+            <p>Você pode solicitar a exclusão de seus dados pessoais a qualquer momento entrando em contato conosco. Excluiremos suas informações, exceto quando somos obrigados a retê-las por lei ou para fins comerciais legítimos.</p>
+        </div>
+
+        <div class="section">
+            <h2>6. Cookies e Tecnologias de Rastreamento</h2>
+
+            <h3>6.1 O Que São Cookies?</h3>
+            <p>Cookies são pequenos arquivos de texto armazenados em seu dispositivo quando você visita nosso site. Usamos cookies para:</p>
+            <ul>
+                <li>Lembrar suas preferências</li>
+                <li>Rastrear desempenho e uso do site</li>
+                <li>Personalizar sua experiência</li>
+                <li>Melhorar a segurança</li>
+            </ul>
+
+            <h3>6.2 Tipos de Cookies Que Usamos</h3>
+            <ul>
+                <li><strong>Cookies Essenciais:</strong> Necessários para funcionalidade do site</li>
+                <li><strong>Cookies de Análise:</strong> Nos ajudam a entender como você usa nosso site (Google Analytics)</li>
+                <li><strong>Cookies de Marketing:</strong> Usados para exibir conteúdo relevante (rastreamento HubSpot)</li>
+            </ul>
+
+            <h3>6.3 Controle de Cookies</h3>
+            <p>Você pode controlar cookies através das configurações do seu navegador. A maioria dos navegadores permite que você recuse cookies ou seja alertado quando cookies são enviados. No entanto, bloquear cookies pode afetar a funcionalidade do site.</p>
+
+            <h3>6.4 Do Not Track</h3>
+            <p>Alguns navegadores incluem um recurso "Do Not Track". Atualmente, não há padrão para como os sites respondem a sinais DNT. Respeitamos preferências de opt-out quando claramente indicadas.</p>
+        </div>
+
+        <div class="section">
+            <h2>7. Segurança de Dados</h2>
+            <p>Implementamos medidas de segurança padrão da indústria para proteger suas informações:</p>
+            <ul>
+                <li>Criptografia HTTPS para dados em trânsito</li>
+                <li>Processamento de pagamento seguro através de provedores em conformidade com PCI-DSS</li>
+                <li>Controles de acesso e autenticação</li>
+                <li>Auditorias de segurança regulares</li>
+                <li>Armazenamento seguro de dados sensíveis</li>
+            </ul>
+
+            <div class="highlight">
+                <p><strong>Sem Segurança Absoluta:</strong> Embora nos esforcemos para proteger seus dados, nenhum sistema é completamente seguro. Não podemos garantir segurança absoluta de suas informações. Qualquer transmissão de dados é por sua conta e risco.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>8. Seus Direitos de Privacidade</h2>
+
+            <h3>8.1 Direitos Gerais</h3>
+            <p>Você tem os seguintes direitos em relação aos seus dados pessoais:</p>
+            <ul>
+                <li><strong>Direito de Acesso:</strong> Solicitar uma cópia de seus dados</li>
+                <li><strong>Direito de Correção:</strong> Solicitar correção de dados imprecisos</li>
+                <li><strong>Direito de Exclusão:</strong> Solicitar exclusão de seus dados (direito ao esquecimento)</li>
+                <li><strong>Direito de Restrição:</strong> Solicitar restrição de processamento</li>
+                <li><strong>Direito de Portabilidade:</strong> Solicitar seus dados em formato portável</li>
+                <li><strong>Direito de Revogar Consentimento:</strong> Revogar consentimento a qualquer momento</li>
+                <li><strong>Direito de Objeção:</strong> Objetar a certas atividades de processamento</li>
+            </ul>
+
+            <h3>8.2 Conformidade LGPD (Usuários Brasileiros)</h3>
+            <p>Se você está localizado no Brasil, é protegido pela Lei Geral de Proteção de Dados (LGPD). Processamos seus dados legalmente sob as seguintes bases legais:</p>
+            <ul>
+                <li>Execução de contrato (entrega de produtos comprados)</li>
+                <li>Consentimento (para marketing e análise)</li>
+                <li>Interesse legítimo (para melhoria de serviço e segurança)</li>
+                <li>Obrigação legal (para conformidade fiscal)</li>
+            </ul>
+
+            <h3>8.3 Como Exercer Seus Direitos</h3>
+            <p>Para exercer qualquer um desses direitos, entre em contato conosco em <strong>prnsh.llc@gmail.com</strong> com:</p>
+            <ul>
+                <li>Seu nome e endereço de email</li>
+                <li>Descrição de sua solicitação</li>
+                <li>Comprovação de identidade (se necessário)</li>
+            </ul>
+            <p>Responderemos dentro de 30 dias a sua solicitação. Você também pode registrar uma reclamação com sua autoridade local de proteção de dados.</p>
+        </div>
+
+        <div class="section">
+            <h2>9. Transferências Internacionais de Dados</h2>
+            <p>Suas informações podem ser transferidas para, armazenadas em e processadas em países diferentes de seu país de residência. Esses países podem ter leis de proteção de dados diferentes das de seu país de origem.</p>
+
+            <p>Quando transferimos dados internacionalmente, garantimos que as proteções apropriadas estejam em vigor:</p>
+            <ul>
+                <li>Cláusulas contratuais padrão (CCPs)</li>
+                <li>Proteções adequadas por leis aplicáveis</li>
+                <li>Seu consentimento explícito (quando necessário)</li>
+            </ul>
+
+            <p><strong>Brasil & LGPD:</strong> Para residentes brasileiros, as transferências internacionais estão em conformidade com a Lei Geral de Proteção de Dados (LGPD).</p>
+        </div>
+
+        <div class="section">
+            <h2>10. Privacidade de Menores</h2>
+            <p>Know It First não é direcionada a crianças menores de 13 anos de idade (ou a idade aplicável de consentimento digital em sua jurisdição). Não coletamos deliberadamente informações pessoais de crianças menores de 13 anos.</p>
+
+            <p>Se descobrirmos que coletamos informações de uma criança menor de 13 anos, iremos deletá-la imediatamente. Se você acredita que coletamos informações de uma criança, por favor entre em contato conosco em <strong>prnsh.llc@gmail.com</strong>.</p>
+        </div>
+
+        <div class="section">
+            <h2>11. Links e Serviços de Terceiros</h2>
+            <p>Nosso site pode conter links para websites e serviços de terceiros. Esta Política de Privacidade se aplica apenas a Know It First. Não somos responsáveis pelas práticas de privacidade de sites externos.</p>
+
+            <p>Encorajamos você a revisar as políticas de privacidade de qualquer serviço de terceiros antes de fornecer suas informações.</p>
+        </div>
+
+        <div class="section">
+            <h2>12. Alterações Nesta Política de Privacidade</h2>
+            <p>Podemos atualizar esta Política de Privacidade de tempos em tempos para refletir mudanças em nossas práticas, tecnologia, requisitos legais ou outros fatores.</p>
+
+            <p><strong>Notificação de Alterações:</strong></p>
+            <ul>
+                <li>Atualizaremos a data "Última atualização" no topo desta política</li>
+                <li>Para alterações materiais, notificaremos você via email ou aviso destacado em nosso site</li>
+                <li>Seu uso continuado do Serviço após as alterações constitui aceitação da política atualizada</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>13. Entre em Contato Conosco</h2>
+            <p>Se você tem perguntas sobre esta Política de Privacidade ou nossas práticas de privacidade, entre em contato conosco:</p>
+
+            <div class="contact-info">
+                <p><strong>Know It First</strong></p>
+                <p><strong>Empresa:</strong> EMC</p>
+                <p><strong>Operadora:</strong> Frederico Junqueira</p>
+                <p><strong>Email:</strong> <a href="mailto:prnsh.llc@gmail.com">prnsh.llc@gmail.com</a></p>
+                <p><strong>Domínio:</strong> knowitfirst.com</p>
+            </div>
+
+            <p style="margin-top: 1.5rem;">Responderemos sua consulta dentro de 30 dias.</p>
+        </div>
+
+        <div class="section">
+            <h2>14. Encarregado de Proteção de Dados / Gerente de Privacidade</h2>
+            <p>Para consultas sobre proteção de dados, entre em contato:</p>
+            <div class="contact-info">
+                <p><strong>Email:</strong> <a href="mailto:prnsh.llc@gmail.com">prnsh.llc@gmail.com</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>LEGAL</h4>
+                <a href="/knowitfirst-terms-ptbr.html">Termos de Uso</a>
+                <a href="/knowitfirst-privacy-ptbr.html">Política de Privacidade</a>
+            </div>
+            <div class="footer-section">
+                <h4>SUPORTE</h4>
+                <a href="mailto:prnsh.llc@gmail.com">Entre em Contato</a>
+                <a href="/">Voltar para Início</a>
+            </div>
+            <div class="footer-section">
+                <h4>PRODUTOS</h4>
+                <a href="/">Manuais</a>
+                <a href="/">Modelos</a>
+                <a href="/">Projetos</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 EMC. Todos os direitos reservados. | <a href="/knowitfirst-privacy-ptbr.html" style="color: var(--ocean-start); text-decoration: none;">Política de Privacidade</a></p>
+        </div>
+    </footer>
+</body>
+</html>

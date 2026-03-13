@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Know It First — The Operator's Edge in AI</title>
+<meta name="description" content="Frameworks, automações e soul files para construir negócios operados por IA desde o primeiro dia.">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ocean-100:#00B4D8;--ocean-200:#0096C7;--ocean-300:#0077B6;--ocean-400:#005F8A;--ocean-500:#023E5F;
+    --deep:#0A1628;--deep-surface:#111D32;--deep-card:#162236;--deep-border:#1E2D45;
+    --frost:#FFFFFF;--frost-80:rgba(255,255,255,0.8);--frost-60:rgba(255,255,255,0.6);--frost-40:rgba(255,255,255,0.4);
+    --accent-cyan:#90E0EF;--accent-electric:#48CAE4;--success:#06D6A0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:var(--deep);color:var(--frost);line-height:1.6;overflow-x:hidden;}
+  .container{max-width:1100px;margin:0 auto;padding:0 24px;}
+
+  /* Nav */
+  nav{padding:20px 0;border-bottom:1px solid var(--deep-border);position:sticky;top:0;background:rgba(10,22,40,0.95);backdrop-filter:blur(12px);z-index:100;}
+  .nav-inner{display:flex;justify-content:space-between;align-items:center;}
+  .nav-logo{display:flex;align-items:center;gap:10px;}
+  .nav-logo svg{width:32px;height:32px;}
+  .nav-logo span{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;letter-spacing:1.5px;}
+  .nav-links{display:flex;align-items:center;gap:24px;}
+  .nav-links a{color:var(--frost-60);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--frost);}
+  .nav-cta{background:linear-gradient(90deg,var(--ocean-200),var(--ocean-100));color:var(--deep);padding:8px 20px;border-radius:8px;font-weight:700;font-size:13px;text-decoration:none;transition:opacity 0.2s;}
+  .nav-cta:hover{opacity:0.9;}
+  .lang-switch{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--frost-40);text-decoration:none;border:1px solid var(--deep-border);padding:4px 10px;border-radius:6px;}
+
+  /* Hero */
+  .hero{padding:100px 0 80px;text-align:center;position:relative;}
+  .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(0,180,216,0.08),transparent 70%);pointer-events:none;}
+  .hero-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--accent-cyan);border:1px solid var(--deep-border);padding:6px 16px;border-radius:20px;margin-bottom:24px;text-transform:uppercase;}
+  .hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(36px,5vw,56px);font-weight:700;line-height:1.1;margin-bottom:20px;letter-spacing:-1px;}
+  .hero h1 .gradient{background:linear-gradient(90deg,var(--ocean-100),var(--accent-electric));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .hero p{font-size:18px;color:var(--frost-60);max-width:600px;margin:0 auto 36px;line-height:1.6;}
+  .hero-cta{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(90deg,var(--ocean-200),var(--ocean-100));color:var(--deep);padding:16px 36px;border-radius:12px;font-weight:700;font-size:16px;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 24px rgba(0,180,216,0.25);}
+  .hero-cta:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,180,216,0.35);}
+  .hero-sub{font-size:13px;color:var(--frost-40);margin-top:16px;}
+  .hero-sub strong{color:var(--success);}
+
+  /* Social proof */
+  .proof{padding:40px 0;border-bottom:1px solid var(--deep-border);text-align:center;}
+  .proof-text{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--frost-40);letter-spacing:1px;}
+
+  /* Features */
+  .features{padding:80px 0;}
+  .features-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ocean-100);margin-bottom:8px;text-align:center;}
+  .features-title{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:600;text-align:center;margin-bottom:48px;}
+  .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .feat-card{background:var(--deep-card);border:1px solid var(--deep-border);border-radius:12px;padding:28px;transition:border-color 0.3s;}
+  .feat-card:hover{border-color:var(--ocean-300);}
+  .feat-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--ocean-300),var(--ocean-100));border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:18px;}
+  .feat-card h3{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;margin-bottom:8px;}
+  .feat-card p{font-size:14px;color:var(--frost-60);line-height:1.5;}
+
+  /* What's Inside */
+  .inside{padding:80px 0;border-top:1px solid var(--deep-border);}
+  .inside-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ocean-100);margin-bottom:8px;text-align:center;}
+  .inside-title{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:600;text-align:center;margin-bottom:48px;}
+  .toc{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:800px;margin:0 auto;}
+  .toc-item{display:flex;align-items:center;gap:12px;background:var(--deep-card);border:1px solid var(--deep-border);border-radius:10px;padding:16px 20px;transition:border-color 0.2s;}
+  .toc-item:hover{border-color:var(--ocean-200);}
+  .toc-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ocean-100);font-weight:500;min-width:28px;}
+  .toc-text{font-size:14px;font-weight:500;}
+
+  /* Soul File Preview */
+  .soul{padding:80px 0;border-top:1px solid var(--deep-border);}
+  .soul-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ocean-100);margin-bottom:8px;text-align:center;}
+  .soul-title{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:600;text-align:center;margin-bottom:12px;}
+  .soul-desc{font-size:16px;color:var(--frost-60);text-align:center;max-width:600px;margin:0 auto 36px;}
+  .code-window{background:var(--deep-surface);border:1px solid var(--deep-border);border-radius:12px;overflow:hidden;max-width:700px;margin:0 auto;}
+  .code-bar{height:36px;background:var(--deep-card);border-bottom:1px solid var(--deep-border);display:flex;align-items:center;padding:0 16px;gap:8px;}
+  .code-dot{width:10px;height:10px;border-radius:50%;}
+  .code-dot.r{background:#EF476F;}
+  .code-dot.y{background:#FFD166;}
+  .code-dot.g{background:#06D6A0;}
+  .code-filename{margin-left:12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--frost-40);}
+  .code-body{padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.8;color:var(--frost-80);overflow-x:auto;}
+  .code-body .key{color:var(--ocean-100);}
+  .code-body .val{color:var(--accent-cyan);}
+  .code-body .comment{color:var(--frost-40);}
+
+  /* Pricing */
+  .pricing{padding:80px 0;border-top:1px solid var(--deep-border);}
+  .pricing-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ocean-100);margin-bottom:8px;text-align:center;}
+  .pricing-title{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:600;text-align:center;margin-bottom:48px;}
+  .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:900px;margin:0 auto;}
+  .price-card{background:var(--deep-card);border:1px solid var(--deep-border);border-radius:16px;padding:32px;text-align:center;position:relative;transition:border-color 0.3s;}
+  .price-card.featured{border-color:var(--ocean-100);background:linear-gradient(180deg,rgba(0,180,216,0.08),transparent);}
+  .price-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,var(--ocean-200),var(--ocean-100));color:var(--deep);font-size:11px;font-weight:700;padding:4px 16px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;}
+  .price-tier{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;margin-bottom:4px;}
+  .price-desc{font-size:13px;color:var(--frost-40);margin-bottom:20px;}
+  .price-amount{font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;margin-bottom:4px;}
+  .price-amount .intl{font-size:16px;color:var(--frost-40);}
+  .price-freq{font-size:12px;color:var(--frost-40);margin-bottom:24px;}
+  .price-features{text-align:left;list-style:none;font-size:13px;color:var(--frost-60);margin-bottom:24px;}
+  .price-features li{padding:6px 0;border-bottom:1px solid var(--deep-border);display:flex;align-items:center;gap:8px;}
+  .price-features li:last-child{border:none;}
+  .check{color:var(--success);}
+  .price-btn{display:block;padding:12px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;text-align:center;transition:opacity 0.2s;}
+  .price-btn.primary{background:linear-gradient(90deg,var(--ocean-200),var(--ocean-100));color:var(--deep);}
+  .price-btn.secondary{background:var(--deep-surface);border:1px solid var(--deep-border);color:var(--frost);}
+  .price-btn:hover{opacity:0.9;}
+
+  /* Payment badges */
+  .payment-badges{display:flex;justify-content:center;gap:16px;margin-top:32px;flex-wrap:wrap;}
+  .pay-badge{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--frost-40);border:1px solid var(--deep-border);padding:6px 14px;border-radius:6px;}
+
+  /* FAQ */
+  .faq{padding:80px 0;border-top:1px solid var(--deep-border);}
+  .faq-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ocean-100);margin-bottom:8px;text-align:center;}
+  .faq-title{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:600;text-align:center;margin-bottom:48px;}
+  .faq-list{max-width:700px;margin:0 auto;}
+  .faq-item{border-bottom:1px solid var(--deep-border);padding:20px 0;}
+  .faq-q{font-weight:600;font-size:15px;margin-bottom:8px;cursor:pointer;}
+  .faq-a{font-size:14px;color:var(--frost-60);line-height:1.6;}
+
+  /* CTA Final */
+  .final-cta{padding:80px 0;text-align:center;border-top:1px solid var(--deep-border);}
+  .final-cta h2{font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;margin-bottom:16px;}
+  .final-cta p{font-size:16px;color:var(--frost-60);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;}
+
+  /* Footer */
+  footer{padding:40px 0;border-top:1px solid var(--deep-border);text-align:center;}
+  .footer-logo{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px;}
+  .footer-logo svg{width:24px;height:24px;}
+  .footer-logo span{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;letter-spacing:1.5px;}
+  .footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:16px;}
+  .footer-links a{color:var(--frost-40);text-decoration:none;font-size:12px;}
+  .footer-copy{font-size:11px;color:var(--frost-40);font-family:'JetBrains Mono',monospace;}
+
+  @media(max-width:768px){
+    .features-grid,.pricing-grid{grid-template-columns:1fr;}
+    .toc{grid-template-columns:1fr;}
+    .essence-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container nav-inner">
+    <div class="nav-logo">
+      <svg viewBox="0 0 120 120"><defs><linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00B4D8"/><stop offset="100%" stop-color="#0077B6"/></linearGradient></defs><polygon points="20,10 45,10 45,45 80,10 110,10 65,60 110,110 80,110 45,75 45,110 20,110" fill="url(#ng)"/></svg>
+      <span>KNOW IT FIRST</span>
+    </div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#inside">Conteudo</a>
+      <a href="#pricing">Precos</a>
+      <a href="#faq">FAQ</a>
+      <a href="en.html" class="lang-switch">EN</a>
+      <a href="#pricing" class="nav-cta">Comece agora</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">Novo — Framework Agent-First</div>
+    <h1>Construa um negocio<br>operado por <span class="gradient">IA</span></h1>
+    <p>Frameworks, automacoes e soul files para montar seu primeiro negocio gerenciado por agentes de IA. Sem codigo. Sem equipe. Desde o dia zero.</p>
+    <a href="#pricing" class="hero-cta">Quero o Playbook — R$47</a>
+    <div class="hero-sub">Pagamento unico. Acesso imediato. <strong>Garantia de 7 dias.</strong></div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof">
+  <div class="container">
+    <div class="proof-text">Baseado em frameworks usados por operadores que constroem com Claude, Make.com e HubSpot</div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="features-label">O que voce vai aprender</div>
+    <div class="features-title">Sistema completo, nao apenas teoria</div>
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon">&#9889;</div>
+        <h3>Soul Files</h3>
+        <p>Arquivos de configuracao que dao ao seu agente IA personalidade, limites e objetivos claros de negocio.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">&#9881;</div>
+        <h3>Automacoes Make.com</h3>
+        <p>Blueprints JSON importaveis para criar pipelines de vendas, email marketing e CRM automatizados.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">&#128202;</div>
+        <h3>Modelo de Negocio</h3>
+        <p>Canvas completo com estrutura de receita, custos operacionais e estrategia de escala progressiva.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">&#128640;</div>
+        <h3>Speedrun $0-to-Revenue</h3>
+        <p>Roteiro de 14 dias para sair do zero ao primeiro faturamento com stack minima e custo quase zero.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">&#128736;</div>
+        <h3>Agent Prompt Library</h3>
+        <p>Biblioteca de prompts otimizados para delegar tarefas complexas: vendas, suporte, conteudo, analytics.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">&#128300;</div>
+        <h3>Loop de Auto-Melhoria</h3>
+        <p>Sistema para o agente analisar performance, identificar gargalos e propor otimizacoes autonomamente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="inside" id="inside">
+  <div class="container">
+    <div class="inside-label">Dentro do playbook</div>
+    <div class="inside-title">12 capitulos actionable</div>
+    <div class="toc">
+      <div class="toc-item"><span class="toc-num">01</span><span class="toc-text">O Modelo Agent-First</span></div>
+      <div class="toc-item"><span class="toc-num">02</span><span class="toc-text">Configurando seu Container</span></div>
+      <div class="toc-item"><span class="toc-num">03</span><span class="toc-text">Soul Files na Pratica</span></div>
+      <div class="toc-item"><span class="toc-num">04</span><span class="toc-text">Speedrun $0-to-Revenue</span></div>
+      <div class="toc-item"><span class="toc-num">05</span><span class="toc-text">Arquitetura de Automacao</span></div>
+      <div class="toc-item"><span class="toc-num">06</span><span class="toc-text">Loop de Auto-Melhoria</span></div>
+      <div class="toc-item"><span class="toc-num">07</span><span class="toc-text">Delegacao Inteligente</span></div>
+      <div class="toc-item"><span class="toc-num">08</span><span class="toc-text">CRM & Sequencias de Email</span></div>
+      <div class="toc-item"><span class="toc-num">09</span><span class="toc-text">Biblioteca de Prompts</span></div>
+      <div class="toc-item"><span class="toc-num">10</span><span class="toc-text">Blueprints Make.com</span></div>
+      <div class="toc-item"><span class="toc-num">11</span><span class="toc-text">Escala e Multiplicacao</span></div>
+      <div class="toc-item"><span class="toc-num">12</span><span class="toc-text">Checklist de Lancamento</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOUL FILE PREVIEW -->
+<section class="soul">
+  <div class="container">
+    <div class="soul-label">Preview</div>
+    <div class="soul-title">Veja um Soul File real</div>
+    <div class="soul-desc">O soul file e o DNA do seu agente. Ele define quem o agente e, o que faz, e quais sao seus limites.</div>
+    <div class="code-window">
+      <div class="code-bar">
+        <div class="code-dot r"></div><div class="code-dot y"></div><div class="code-dot g"></div>
+        <span class="code-filename">agent-soul.yaml</span>
+      </div>
+      <div class="code-body">
+<span class="comment"># Soul File — Agente de Vendas</span>
+<span class="key">identity:</span>
+  <span class="key">name:</span> <span class="val">"Sales Agent v1"</span>
+  <span class="key">role:</span> <span class="val">"Closer de vendas digital"</span>
+  <span class="key">model:</span> <span class="val">"claude-opus"</span>
+
+<span class="key">objectives:</span>
+  - <span class="val">Qualificar leads inbound</span>
+  - <span class="val">Nutrir via email sequence</span>
+  - <span class="val">Fechar vendas no checkout</span>
+
+<span class="key">boundaries:</span>
+  <span class="key">max_discount:</span> <span class="val">15%</span>
+  <span class="key">escalate_to_human:</span> <span class="val">true</span>
+  <span class="key">never:</span> <span class="val">"prometer resultados financeiros"</span>
+
+<span class="comment"># + 40 templates no playbook completo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="pricing-label">Investimento</div>
+    <div class="pricing-title">Escolha seu acesso</div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-tier">Playbook</div>
+        <div class="price-desc">PDF + Templates</div>
+        <div class="price-amount">R$47 <span class="intl">/ $27</span></div>
+        <div class="price-freq">Pagamento unico</div>
+        <ul class="price-features">
+          <li><span class="check">&#10003;</span> PDF 12 capitulos</li>
+          <li><span class="check">&#10003;</span> Soul file templates</li>
+          <li><span class="check">&#10003;</span> Make.com blueprints</li>
+          <li><span class="check">&#10003;</span> Business model canvas</li>
+        </ul>
+        <a href="https://pay.kiwify.com.br/maPuyDH" class="price-btn secondary" target="_blank">Quero o Playbook</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge">Mais Popular</div>
+        <div class="price-tier">Bundle</div>
+        <div class="price-desc">Playbook + Agent Kit</div>
+        <div class="price-amount">R$97 <span class="intl">/ $47</span></div>
+        <div class="price-freq">Pagamento unico</div>
+        <ul class="price-features">
+          <li><span class="check">&#10003;</span> Tudo do Playbook</li>
+          <li><span class="check">&#10003;</span> Cenarios Make importaveis</li>
+          <li><span class="check">&#10003;</span> Templates HubSpot CRM</li>
+          <li><span class="check">&#10003;</span> Biblioteca de prompts (40+)</li>
+          <li><span class="check">&#10003;</span> 8 soul files prontos para uso</li>
+        </ul>
+        <a href="https://pay.kiwify.com.br/8Dgvy7u" class="price-btn primary" target="_blank">Quero o Bundle</a>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Pro</div>
+        <div class="price-desc">Updates + Comunidade</div>
+        <div class="price-amount">R$37 <span class="intl">/ $19</span></div>
+        <div class="price-freq">por mes</div>
+        <ul class="price-features">
+          <li><span class="check">&#10003;</span> Tudo do Bundle</li>
+          <li><span class="check">&#10003;</span> Templates mensais novos</li>
+          <li><span class="check">&#10003;</span> Comunidade Discord</li>
+          <li><span class="check">&#10003;</span> Updates prioritarios</li>
+          <li><span class="check">&#10003;</span> Q&A mensal ao vivo</li>
+        </ul>
+        <a href="https://pay.kiwify.com.br/kq2mN3M" class="price-btn secondary" target="_blank">Assinar Pro</a>
+      </div>
+    </div>
+    <div class="payment-badges">
+      <span class="pay-badge">Pix</span>
+      <span class="pay-badge">Cartao de Credito</span>
+      <span class="pay-badge">Boleto</span>
+      <span class="pay-badge">Garantia 7 dias</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-label">Perguntas frequentes</div>
+    <div class="faq-title">FAQ</div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Preciso saber programar?</div>
+        <div class="faq-a">Nao. O playbook foi construido para operadores, nao desenvolvedores. Usamos ferramentas no-code como Make.com e HubSpot. Os templates sao importaveis com um clique.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">O que e um "soul file"?</div>
+        <div class="faq-a">E o arquivo de configuracao que define a identidade, objetivos e limites do seu agente IA. Pense nele como o DNA operacional do agente.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Funciona com qual IA?</div>
+        <div class="faq-a">O framework principal usa Claude (Anthropic), mas os conceitos de soul files e automacao se aplicam a qualquer LLM: GPT-4, Gemini, Llama, etc.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">E se eu nao gostar?</div>
+        <div class="faq-a">Garantia incondicional de 7 dias. Se nao fizer sentido pra voce, devolvemos 100% sem perguntas.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Quanto tempo leva pra implementar?</div>
+        <div class="faq-a">O speedrun do capitulo 4 e desenhado para 14 dias. Mas voce pode ir no seu ritmo — o conteudo e seu para sempre.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <h2>Pronto para operar com IA?</h2>
+    <p>Junte-se aos operadores que estao construindo negocios com agentes de IA como infraestrutura, nao como brinquedo.</p>
+    <a href="#pricing" class="hero-cta">Comecar agora — R$47</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">
+      <svg viewBox="0 0 120 120" width="24" height="24"><defs><linearGradient id="fg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00B4D8"/><stop offset="100%" stop-color="#0077B6"/></linearGradient></defs><polygon points="20,10 45,10 45,45 80,10 110,10 65,60 110,110 80,110 45,75 45,110 20,110" fill="url(#fg)"/></svg>
+      <span>KNOW IT FIRST</span>
+    </div>
+    <div class="footer-links">
+      <a href="knowitfirst-terms-ptbr.html">Termos de Uso</a>
+      <a href="knowitfirst-privacy-ptbr.html">Politica de Privacidade</a>
+      <a href="mailto:prnsh.llc@gmail.com">Contato</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Know It First — EMC. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Use - Know It First</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --deep-bg: #0A1628;
+            --card: #162236;
+            --border: #1E2D45;
+            --ocean-start: #00B4D8;
+            --ocean-end: #0077B6;
+            --frost: #FFFFFF;
+            --frost-60: rgba(255,255,255,0.6);
+            --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        body {
+            background-color: var(--deep-bg);
+            color: var(--frost);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 2rem;
+            background-color: rgba(16, 34, 56, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--frost);
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-brand svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--frost-60);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--frost);
+        }
+
+        .lang-switcher {
+            background-color: var(--border);
+            border: 1px solid var(--border);
+            color: var(--frost);
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switcher:hover {
+            background-color: var(--card);
+        }
+
+        /* Main Container */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            min-height: calc(100vh - 200px);
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--ocean-start) 0%, var(--ocean-end) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .last-updated {
+            color: var(--frost-60);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--ocean-start);
+        }
+
+        h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--frost);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--frost-60);
+            font-size: 1rem;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+            color: var(--frost-60);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: var(--frost);
+        }
+
+        em {
+            color: var(--ocean-start);
+        }
+
+        .section {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            background-color: rgba(0, 180, 216, 0.1);
+            border-left: 4px solid var(--ocean-start);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0.375rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--card);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--frost);
+        }
+
+        .footer-section a {
+            display: block;
+            color: var(--frost-60);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--ocean-start);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: var(--frost-60);
+            font-size: 0.85rem;
+        }
+
+        .contact-info {
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+
+        .contact-info a {
+            color: var(--ocean-start);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--frost);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+            }
+
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+
+            main {
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="nav-brand">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="28" height="28" rx="4" stroke="currentColor" stroke-width="2"/>
+                <path d="M10 12L16 20L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="24" cy="8" r="2" fill="currentColor"/>
+            </svg>
+            KNOW IT FIRST
+        </a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/privacy">Privacy</a>
+            <button class="lang-switcher" onclick="window.location.href='/knowitfirst-terms-ptbr.html'">PT-BR</button>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Terms of Use</h1>
+        <p class="last-updated">Last updated: March 2026</p>
+
+        <div class="section">
+            <h2>1. Acceptance of Terms</h2>
+            <p>By accessing and using the Know It First platform (the "Service"), you agree to be bound by these Terms of Use. If you do not agree to any part of these terms, you may not use the Service.</p>
+            <p>Know It First is provided by <strong>EMC</strong>, operated by Frederico Junqueira. We reserve the right to modify these terms at any time. Continued use of the Service constitutes acceptance of updated terms.</p>
+        </div>
+
+        <div class="section">
+            <h2>2. Product Description</h2>
+            <p>Know It First offers digital products including:</p>
+            <ul>
+                <li>Playbooks</li>
+                <li>Templates</li>
+                <li>Blueprints</li>
+                <li>Related digital resources</li>
+            </ul>
+            <p><strong>These are digital products only. No physical goods are sold.</strong> Products are delivered electronically via email after purchase.</p>
+        </div>
+
+        <div class="section">
+            <h2>3. Intellectual Property Rights</h2>
+            <p>All content, including but not limited to text, graphics, logos, images, audio, video, and software, is the property of EMC or its content suppliers and is protected by international copyright laws.</p>
+
+            <h3>3.1 Your License</h3>
+            <p>Upon purchase, you receive a <strong>personal, non-exclusive, non-transferable license</strong> to use the products for your own business or personal purposes. You may not:</p>
+            <ul>
+                <li>Resell, redistribute, or share the products with others</li>
+                <li>Modify, reverse-engineer, or create derivative works</li>
+                <li>Use the products for commercial purposes without explicit written permission</li>
+                <li>Remove or alter copyright, trademark, or proprietary notices</li>
+            </ul>
+
+            <h3>3.2 Your Content</h3>
+            <p>You retain ownership of any content you submit while using the Service. By using the Service, you grant EMC a non-exclusive, royalty-free license to use your feedback and suggestions to improve the Service.</p>
+        </div>
+
+        <div class="section">
+            <h2>4. Payment and Refund Policy</h2>
+
+            <h3>4.1 Payment Methods</h3>
+            <p>Know It First accepts payments through:</p>
+            <ul>
+                <li><strong>Kiwify</strong> (Brazil): Pix, boleto, credit card</li>
+                <li><strong>Lemon Squeezy</strong> (Global): Credit card, PayPal</li>
+            </ul>
+
+            <h3>4.2 Refund Guarantee</h3>
+            <div class="highlight">
+                <p><strong>7-Day Unconditional Guarantee:</strong> If you are not satisfied with your purchase, you may request a full refund within 7 days of purchase, no questions asked.</p>
+            </div>
+            <p>To request a refund, contact us at <strong>prnsh.llc@gmail.com</strong> with your order details. Refunds will be processed through the original payment method.</p>
+
+            <h3>4.3 No Refund After 7 Days</h3>
+            <p>After the 7-day refund period expires, all sales are final. We do not offer refunds for change of mind or technical issues that do not prevent access to the product.</p>
+        </div>
+
+        <div class="section">
+            <h2>5. Disclaimer of Earnings and Income Claims</h2>
+
+            <div class="highlight">
+                <p><strong>IMPORTANT:</strong> Know It First products are <em>educational resources</em> and tools for business improvement. We make <strong>NO income claims, earnings guarantees, or promises of financial results</strong>.</p>
+            </div>
+
+            <p>Your results depend on many factors including:</p>
+            <ul>
+                <li>Your effort and implementation</li>
+                <li>Market conditions</li>
+                <li>Competition</li>
+                <li>Your business model and industry</li>
+                <li>External economic factors</li>
+            </ul>
+
+            <p><strong>Past performance and case studies do not guarantee future results.</strong> Any testimonials or examples are individual experiences and may not be typical.</p>
+        </div>
+
+        <div class="section">
+            <h2>6. Limitation of Liability</h2>
+            <p>To the fullest extent permitted by law:</p>
+            <ul>
+                <li>EMC shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the Service or products</li>
+                <li>Our total liability shall not exceed the amount you paid for the product</li>
+                <li>This includes but is not limited to: lost profits, loss of data, business interruption, or loss of goodwill</li>
+            </ul>
+            <p>Some jurisdictions do not allow limitations on liability, so this may not apply to you.</p>
+        </div>
+
+        <div class="section">
+            <h2>7. Warranties and Disclaimers</h2>
+            <p><strong>THE SERVICE AND PRODUCTS ARE PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND.</strong></p>
+            <p>EMC disclaims all express and implied warranties, including:</p>
+            <ul>
+                <li>Merchantability</li>
+                <li>Fitness for a particular purpose</li>
+                <li>Non-infringement</li>
+                <li>Accuracy or completeness</li>
+            </ul>
+            <p>While we strive for accuracy, we do not guarantee the Service will be error-free or uninterrupted.</p>
+        </div>
+
+        <div class="section">
+            <h2>8. User Responsibilities</h2>
+            <p>You agree to:</p>
+            <ul>
+                <li>Use the Service lawfully and in accordance with these terms</li>
+                <li>Not violate any applicable laws or regulations</li>
+                <li>Not transmit viruses, malware, or harmful code</li>
+                <li>Not attempt to gain unauthorized access to our systems</li>
+                <li>Respect others' intellectual property and privacy</li>
+                <li>Not engage in harassment, abuse, or illegal activity</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>9. Data Collection and Privacy</h2>
+            <p>We collect and use your data (email, name) for:</p>
+            <ul>
+                <li>Delivering products via email</li>
+                <li>CRM and email marketing (via HubSpot and Gmail)</li>
+                <li>Customer support</li>
+                <li>Business analytics and service improvement</li>
+            </ul>
+            <p><strong>No user accounts are created.</strong> Products are delivered via email after purchase. For full details, see our Privacy Policy.</p>
+        </div>
+
+        <div class="section">
+            <h2>10. Third-Party Services</h2>
+            <p>The Service integrates with:</p>
+            <ul>
+                <li><strong>HubSpot</strong> — CRM and email marketing</li>
+                <li><strong>Make.com</strong> — Automation workflows</li>
+                <li><strong>Kiwify & Lemon Squeezy</strong> — Payment processing</li>
+                <li><strong>Google Analytics</strong> — Website analytics (optional)</li>
+            </ul>
+            <p>These services have their own terms and privacy policies. EMC is not responsible for their operations or data practices.</p>
+        </div>
+
+        <div class="section">
+            <h2>11. Termination</h2>
+            <p>EMC may suspend or terminate your access to the Service at any time, without notice, for:</p>
+            <ul>
+                <li>Violation of these terms</li>
+                <li>Illegal activity</li>
+                <li>Abuse of the Service</li>
+                <li>Non-payment</li>
+            </ul>
+            <p>Upon termination, your right to use the products ceases. You must stop all use and delete any local copies of the products if requested.</p>
+        </div>
+
+        <div class="section">
+            <h2>12. Governing Law</h2>
+            <p>These Terms of Use shall be governed by and construed in accordance with the laws applicable to digital services and e-commerce in the relevant jurisdiction, without regard to its conflict of law provisions.</p>
+            <p>For services marketed in Brazil, Brazilian law shall apply.</p>
+        </div>
+
+        <div class="section">
+            <h2>13. Dispute Resolution</h2>
+            <p>Any disputes arising under these terms shall first be addressed through good-faith communication. You agree to contact us at <strong>prnsh.llc@gmail.com</strong> to attempt resolution.</p>
+            <p>If disputes cannot be resolved informally, they shall be governed by the laws of the applicable jurisdiction.</p>
+        </div>
+
+        <div class="section">
+            <h2>14. Contact Information</h2>
+            <div class="contact-info">
+                <p><strong>Company:</strong> EMC</p>
+                <p><strong>Operator:</strong> Frederico Junqueira</p>
+                <p><strong>Email:</strong> <a href="mailto:prnsh.llc@gmail.com">prnsh.llc@gmail.com</a></p>
+                <p><strong>Domain:</strong> knowitfirst.com</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>15. Severability</h2>
+            <p>If any provision of these terms is found to be invalid or unenforceable, that provision shall be modified to the minimum extent necessary to make it enforceable, and the remaining provisions shall remain in full force and effect.</p>
+        </div>
+
+        <div class="section">
+            <h2>16. Entire Agreement</h2>
+            <p>These Terms of Use, together with our Privacy Policy, constitute the entire agreement between you and EMC regarding the Service and supersede all prior and contemporaneous agreements and understandings.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>LEGAL</h4>
+                <a href="/knowitfirst-terms-en.html">Terms of Use</a>
+                <a href="/knowitfirst-privacy-en.html">Privacy Policy</a>
+            </div>
+            <div class="footer-section">
+                <h4>SUPPORT</h4>
+                <a href="mailto:prnsh.llc@gmail.com">Contact Us</a>
+                <a href="/">Back to Home</a>
+            </div>
+            <div class="footer-section">
+                <h4>PRODUCTS</h4>
+                <a href="/">Playbooks</a>
+                <a href="/">Templates</a>
+                <a href="/">Blueprints</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 EMC. All rights reserved. | <a href="/knowitfirst-privacy-en.html" style="color: var(--ocean-start); text-decoration: none;">Privacy Policy</a></p>
+        </div>
+    </footer>
+</body>
+</html>
